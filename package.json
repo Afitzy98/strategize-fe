@@ -6,11 +6,11 @@
   "author": "Aaron Fitzpatrick <a.fitzy98@gmail.com>",
   "private": true,
   "scripts": {
-    "heroku-prebuild": "yarn global add @quasar/cli && yarn && ls",
+    "heroku-prebuild": "yarn global add @quasar/cli && yarn",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "start": "node server.js",
-    "build": "ls && QUASAR_API_URL=http://54.170.57.111 quasar build"
+    "build": "quasar build"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
