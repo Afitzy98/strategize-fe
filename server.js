@@ -1,7 +1,7 @@
-import express from 'express'
-import history from 'connect-history-api-fallback'
-import path from 'path'
-import serveStatic from 'serve-static'
+const express = require('express')
+const history = require('connect-history-api-fallback')
+const path = require('path')
+const serveStatic = require('serve-static')
 
 const port = process.env.PORT || 5000
 
