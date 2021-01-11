@@ -6,9 +6,10 @@
   "author": "Aaron Fitzpatrick <a.fitzy98@gmail.com>",
   "private": true,
   "scripts": {
+    "heroku-prebuild": "yarn global add @quasar/cli",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
-    "build": "npx quasar build",
+    "build": "quasar build",
     "start": "node server.js",
     "heroku-postbuild": "yarn && yarn build"
   },
