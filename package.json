@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "start": "node server.js",
-    "heroku-postbuild": "wait yarn && quasar build"
+    "heroku-postbuild": "yarn & pid=$! && wait $pid && quasar build"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
