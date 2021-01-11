@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0",
     "start": "node server.js",
-    "build": "quasar build"
+    "build": "QUASAR_API_URL=http://54.170.57.111 quasar build"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
