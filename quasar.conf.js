@@ -42,7 +42,7 @@ module.exports = function(/* ctx */) {
     build: {
       env: {
         QUASAR_API_URL:
-          'https://jtp82npexf.execute-api.eu-west-1.amazonaws.com/dev'
+          'https://ohp8stz4c7.execute-api.eu-west-1.amazonaws.com/dev'
       },
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
