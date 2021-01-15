@@ -4,7 +4,11 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') },
-      { path: '/search', component: () => import('pages/Search.vue') }
+      {
+        path: '/coin/:coinId',
+        component: () => import('pages/Coin.vue')
+      },
+      { path: '/favourites', component: () => import('pages/Favourites.vue') }
     ]
   },
 

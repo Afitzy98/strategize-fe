@@ -6,13 +6,14 @@
           flat
           dense
           round
+          class="text-gray"
           icon="menu"
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title>
-          <q-icon class="icon" name="insert_chart_outlined" />
+        <q-toolbar-title class="text-gray">
+          <q-icon class="text-accent" name="insert_chart_outlined" />
           Strategize
         </q-toolbar-title>
       </q-toolbar>
@@ -43,16 +44,16 @@ import EssentialLink from 'components/EssentialLink.vue'
 const linksData = [
   {
     title: 'Home',
-    caption: 'List of your pinned coins',
+    caption: '',
     icon: 'home',
     link: '/',
     isLocal: true
   },
   {
-    title: 'Search',
-    caption: 'Find the coin you are looking for!',
-    icon: 'search',
-    link: '/search',
+    title: 'Favourites',
+    caption: 'List of the coins you have saved',
+    icon: 'star',
+    link: '/favourites',
     isLocal: true
   }
 ]
@@ -68,8 +69,3 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-.icon {
-  color: $accent;
-}
-</style>

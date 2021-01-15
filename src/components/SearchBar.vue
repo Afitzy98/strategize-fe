@@ -1,35 +1,33 @@
 <template>
-  <div class="q-pa-md">
-    <div class="q-gutter-md row">
-      <q-select
-        filled
-        v-model="model"
-        input-debounce="0"
-        :options="options"
-        @filter="filterFn"
-        :hint="hint"
-        class="searchBar"
-        emit-value
-        map-options
-        use-input
-        hide-selected
-        fill-input
-        :loading="loading"
-        :disable="loading"
-        label="Search for a coin or token"
-        color="accent"
-        bg-color="primary"
-        label-color="accent"
-      >
-        <template v-slot:no-option>
-          <q-item class="bg-primary">
-            <q-item-section class="text-white">
-              No results
-            </q-item-section>
-          </q-item>
-        </template>
-      </q-select>
-    </div>
+  <div class="q-gutter-md row">
+    <q-select
+      filled
+      v-model="model"
+      input-debounce="0"
+      :options="options"
+      @filter="filterFn"
+      :hint="hint"
+      class="searchBar"
+      emit-value
+      map-options
+      use-input
+      hide-selected
+      fill-input
+      :loading="loading"
+      :disable="loading"
+      label="Search for a coin or token"
+      color="accent"
+      bg-color="primary"
+      label-color="accent"
+    >
+      <template v-slot:no-option>
+        <q-item class="bg-primary">
+          <q-item-section class="text-gray">
+            No results
+          </q-item-section>
+        </q-item>
+      </template>
+    </q-select>
   </div>
 </template>
 
@@ -66,11 +64,17 @@ export default {
     optionData: {
       type: Array,
       required: true
+    },
+    onSelect: {
+      type: Function,
+      required: false,
+      default: () => {}
     }
   },
   watch: {
     model() {
       this.$emit('updateModel', this.model)
+      this.onSelect()
     }
   }
 }
@@ -80,6 +84,6 @@ export default {
   width: 100%;
 }
 .q-field__input {
-  color: #fff !important;
+  color: #d3d3d3 !important;
 }
 </style>

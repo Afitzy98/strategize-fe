@@ -2,7 +2,8 @@
   <q-card flat bordered class="card bg-dark" :width="this.cardWidth">
     <q-card-section>
       <div class="text-h6">
-        {{ name }} - <span :class="this.signalClass">{{ signal }}</span>
+        {{ name }} -
+        <span :class="this.signalClass">{{ signal }}</span>
         <q-btn
           :class="'float-right' + this.classes"
           flat
@@ -30,7 +31,7 @@
           :color-grid="this.colors.colorGrid"
           :color-text="this.colors.colorText"
           :color-vol-up="this.colors.colorVolUp"
-          :color-vold-dw="this.colors.colorVolDw"
+          :color-vol-dw="this.colors.colorVolDw"
           :font="this.font"
         >
         </trading-vue>
@@ -54,25 +55,25 @@ export default {
   components: { TradingVue },
   data() {
     return {
+      cardWidth: 0,
       chart: {
         chart: { name: '-', type: 'Candles', data: [] }
       },
       colors: {
         colorBack: '#1d1d1d',
         colorGrid: '#222',
-        colorText: '#fff',
+        colorText: '#d3d3d3',
         colorVolUp: '#23a776',
-        colorVolDw: '#23a776'
+        colorVolDw: '#e54150'
       },
       description: '',
-      cardWidth: 0,
+      font: '0.5rem Arial, Helvetica, sans-serif',
       height: 0,
-      width: 300,
+      initialSizeSet: false,
       name: '-',
       signal: '',
       signalClass: '',
-      font: '0.5rem Arial, Helvetica, sans-serif',
-      initialSizeSet: false
+      width: 300
     }
   },
   methods: {
@@ -101,8 +102,12 @@ export default {
         !this.$q.platform.is.mobile ||
         (this.$q.platform.is.mobile && !this.initialSizeSet)
       ) {
+        const ratio = this.$q.platform.is.mobile
+          ? 3 / 4
+          : (window.innerHeight / window.innerWidth) * 0.9
+
         this.width = width
-        this.height = (this.$q.platform.is.mobile ? 3 / 4 : 9 / 16) * width
+        this.height = ratio * width
         this.initialSizeSet = true
       }
     },
