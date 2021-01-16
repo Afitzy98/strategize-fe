@@ -1,6 +1,6 @@
 <template>
   <q-page :class="pageClasses">
-    <div class="row">
+    <div class="row chart-container">
       <div v-for="coinId in coins" :class="cardClasses" :key="coinId">
         <chart-card :coin-id="coinId"></chart-card>
       </div>
@@ -33,6 +33,11 @@ export default {
 }
 </script>
 <style lang="scss">
+.chart-container {
+  max-width: 960px;
+  margin: auto;
+}
+
 .indexPage {
   color: #d3d3d3;
   background-color: $secondary;

@@ -45,7 +45,7 @@ import EssentialLink from 'components/EssentialLink.vue'
 const linksData = [
   {
     title: 'Home',
-    caption: '',
+    caption: "Find the coin you're looking for",
     icon: 'home',
     link: '/',
     isLocal: true
@@ -59,7 +59,7 @@ const linksData = [
   },
   {
     title: 'About',
-    caption: '',
+    caption: 'Find out about how it all works',
     icon: 'help',
     link: '/about',
     isLocal: true

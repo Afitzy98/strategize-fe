@@ -73,7 +73,9 @@ export default {
   },
   computed: {
     headerClasses() {
-      return this.$q.platform.is.mobile ? 'centreMobile text-h2' : 'text-h1'
+      return this.$q.platform.is.mobile
+        ? 'centreMobile text-h2'
+        : 'text-h1 q-mt-xl'
     },
     headerContainerClass() {
       return this.$q.platform.is.mobile
