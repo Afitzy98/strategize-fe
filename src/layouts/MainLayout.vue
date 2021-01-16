@@ -19,7 +19,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered dark>
+    <q-drawer v-model="leftDrawerOpen" bordered dark>
       <q-list>
         <q-item-label header class="text-white">
           Essential Links
@@ -28,6 +28,7 @@
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
+          :onClick="closeDrawer"
         />
       </q-list>
     </q-drawer>
@@ -55,6 +56,13 @@ const linksData = [
     icon: 'star',
     link: '/favourites',
     isLocal: true
+  },
+  {
+    title: 'About',
+    caption: '',
+    icon: 'help',
+    link: '/about',
+    isLocal: true
   }
 ]
 
@@ -65,6 +73,11 @@ export default {
     return {
       leftDrawerOpen: false,
       essentialLinks: linksData
+    }
+  },
+  methods: {
+    closeDrawer() {
+      this.leftDrawerOpen = false
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <q-page class="indexPage text-gray">
-    <div class="img-container">
+    <div :class="headerContainerClass">
       <div class="inner-img-container q-pa-md">
         <div :class="headerClasses + ' q-mt-lg q-py-lg'">
           Welcome to Strategize
@@ -17,19 +17,19 @@
     </div>
     <div class="contentContainer q-pa-lg q-my-xl">
       <div class="row">
-        <div class="col-sm-12 col-md-6">
+        <div class="col-xs-12 col-sm-12 col-md-6 q-py-xl">
           <div class="svgContainer">
             <img src="../assets/strategy-svgrepo-com.svg" class="svgIcon" />
           </div>
         </div>
-        <div class="col-sm-12 col-md-6">
-          <h6>
+        <div :class="footerClasses + ' col-xs-12 col-sm-12 col-md-6 q-py-xl'">
+          <div>
             Follow the same strategy as a trading bot to take the human error
             out of your trading. We provide users with trading charts
             accompanied by the trading signals provided by our bots strategy to
             help them bring their strategy to the next level. Click
             <a href="#/about">here</a> to learn more.
-          </h6>
+          </div>
         </div>
       </div>
     </div>
@@ -73,7 +73,15 @@ export default {
   },
   computed: {
     headerClasses() {
-      return this.$q.platform.is.mobile ? 'text-h3-sm' : 'text-h1'
+      return this.$q.platform.is.mobile ? 'centreMobile text-h2' : 'text-h1'
+    },
+    headerContainerClass() {
+      return this.$q.platform.is.mobile
+        ? 'img-container centreMobile'
+        : 'img-container'
+    },
+    footerClasses() {
+      return this.$q.platform.is.desktop ? 'text-h5' : 'text-h6 centreMobile'
     }
   }
 }
@@ -105,7 +113,7 @@ export default {
 
 .svgContainer {
   max-width: 50%;
-  margin: 1rem auto;
+  margin: auto;
 }
 
 .textContainer {
@@ -113,6 +121,10 @@ export default {
   border-radius: 0.25rem;
   opacity: 0.8;
   margin-bottom: 0;
+}
+
+.centreMobile {
+  text-align: center;
 }
 
 .indexPage {

@@ -103,7 +103,7 @@ export default {
         (this.$q.platform.is.mobile && !this.initialSizeSet)
       ) {
         const ratio = this.$q.platform.is.mobile
-          ? 3 / 4
+          ? 1
           : (window.innerHeight / window.innerWidth) * 0.9
 
         this.width = width
