@@ -79,7 +79,7 @@ export default {
   methods: {
     loadData() {
       if (this.coinId !== '') {
-        this.$axios.get(`/coin/${this.coinId}`).then(({ data }) => {
+        this.$axios.get(`/coins/${this.coinId}`).then(({ data }) => {
           const { ohlcv, indicators, coin = {}, signal } = data
           this.signal = signal === 'True' ? 'BUY' : 'SELL'
           this.signalClass = signal === 'True' ? 'buyText' : 'sellText'
