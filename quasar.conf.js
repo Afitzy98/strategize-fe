@@ -41,8 +41,7 @@ module.exports = function(/* ctx */) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       env: {
-        QUASAR_API_URL:
-          'https://ohp8stz4c7.execute-api.eu-west-1.amazonaws.com/dev'
+        QUASAR_API_URL: 'https://strategise-api.herokuapp.com/'
       },
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
