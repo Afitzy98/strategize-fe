@@ -1,3 +1,5 @@
+import { Notify } from 'quasar'
+
 import api from '../../api'
 
 export async function login({ commit }, { email, password }) {
@@ -33,7 +35,7 @@ export async function setUser({ commit, state }) {
     const { data } = await api.getMe(state.token)
     commit('updateUser', data)
   } catch (e) {
-    this.$q.notify({
+    Notify({
       message: e.message,
       color: 'purple'
     })
