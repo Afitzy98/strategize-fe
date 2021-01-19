@@ -49,6 +49,7 @@
 
 <script>
 import TradingVue from 'trading-vue-js'
+import api from 'src/api'
 
 export default {
   name: 'ChartCard',
@@ -79,7 +80,7 @@ export default {
   methods: {
     loadData() {
       if (this.coinId !== '') {
-        this.$axios.get(`/coins/${this.coinId}`).then(({ data }) => {
+        api.getCoin(this.token, this.coinId).then(({ data }) => {
           const { ohlcv, indicators, coin = {}, signal } = data
           this.signal = signal === 'True' ? 'BUY' : 'SELL'
           this.signalClass = signal === 'True' ? 'buyText' : 'sellText'
@@ -150,6 +151,9 @@ export default {
     },
     tooltipText() {
       return `Click to ${this.isPinned ? 'unpin from' : 'pin to'} home page`
+    },
+    token() {
+      return this.$store.state.global.token
     }
   },
   props: {

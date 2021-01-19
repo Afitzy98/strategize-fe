@@ -79,8 +79,8 @@ export default {
     },
     headerContainerClass() {
       return this.$q.platform.is.mobile
-        ? 'img-container centreMobile'
-        : 'img-container'
+        ? 'mobile-image img-container centreMobile'
+        : 'desktop-image img-container'
     },
     footerClasses() {
       return this.$q.platform.is.desktop ? 'text-h5' : 'text-h6 centreMobile'
@@ -89,9 +89,14 @@ export default {
 }
 </script>
 <style lang="scss">
+.desktop-image {
+  background-image: url('../assets/landingPhoto.jpeg');
+}
+.mobile-image {
+  background-image: url('../assets/mobileLanding.jpeg');
+}
 .img-container {
   width: 100%;
-  background-image: url('../assets/landingPhoto.jpeg');
   min-height: 95vh;
 }
 .inner-img-container {

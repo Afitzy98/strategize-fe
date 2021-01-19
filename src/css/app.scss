@@ -4,6 +4,15 @@ body {
   background-color: $secondary;
 }
 
+a,
+a:visited {
+  color: $accent;
+}
+
 .text-gray {
   color: #d3d3d3;
+}
+
+.fullwidth {
+  width: 100%;
 }

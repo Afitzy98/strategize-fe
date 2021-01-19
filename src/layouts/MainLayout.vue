@@ -6,6 +6,7 @@
           flat
           dense
           round
+          v-show="this.isLoggedIn"
           class="text-gray"
           icon="menu"
           aria-label="Menu"
@@ -16,6 +17,15 @@
           <q-icon class="text-accent" name="insert_chart_outlined" />
           Strategize
         </q-toolbar-title>
+
+        <q-btn
+          outline
+          size="small"
+          color="accent"
+          :label="buttonText"
+          class="q-ma-sm"
+          @click="handleClick"
+        />
       </q-toolbar>
     </q-header>
 
@@ -78,6 +88,21 @@ export default {
   methods: {
     closeDrawer() {
       this.leftDrawerOpen = false
+    },
+    handleClick() {
+      if (this.isLoggedIn) {
+        this.$store.dispatch('global/logout')
+      } else if (this.$router.history.current.fullPath !== '/login') {
+        this.$router.push('/login')
+      }
+    }
+  },
+  computed: {
+    isLoggedIn() {
+      return !!this.$store.state.global.user
+    },
+    buttonText() {
+      return this.isLoggedIn ? 'Sign out' : 'sign in'
     }
   }
 }

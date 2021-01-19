@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import routes from './routes'
+import createRoutes from './routes'
 
 Vue.use(VueRouter)
 
@@ -14,10 +14,20 @@ Vue.use(VueRouter)
  * with the Router instance.
  */
 
-export default function (/* { store, ssrContext } */) {
+export default function({ store }) {
+  const requiresAuth = (to, from, next) => {
+    store.dispatch('global/setUser').then(() => {
+      if (!store.state.global.user) {
+        next('login')
+      } else {
+        next()
+      }
+    })
+  }
+
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
-    routes,
+    routes: createRoutes(requiresAuth),
 
     // Leave these as they are and change in quasar.conf.js instead!
     // quasar.conf.js -> build -> vueRouterMode
