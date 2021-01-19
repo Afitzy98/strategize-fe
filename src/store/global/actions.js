@@ -33,6 +33,10 @@ export async function setUser({ commit, state }) {
     const { data } = await api.getMe(state.token)
     commit('updateUser', data)
   } catch (e) {
+    this.$q.notify({
+      message: e.message,
+      color: 'purple'
+    })
     commit('updateUser', null)
   }
 }
