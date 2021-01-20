@@ -94,6 +94,7 @@ export default {
 }
 .mobile-image {
   background-image: url('../assets/mobileLanding.jpeg');
+  background-size: contain;
 }
 .img-container {
   width: 100%;
