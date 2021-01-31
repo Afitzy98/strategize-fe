@@ -93,7 +93,7 @@ export default {
     login() {
       if (this.email && this.password) {
         this.$store.dispatch('global/login', {
-          email: this.email,
+          email: this.email.toLowerCase(),
           password: this.password
         })
         return
@@ -108,7 +108,7 @@ export default {
         this.validatePassword(this.password)
       ) {
         await this.$store.dispatch('global/register', {
-          email: this.email,
+          email: this.email.toLowerCase(),
           password: this.password
         })
         return
