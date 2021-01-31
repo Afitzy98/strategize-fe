@@ -74,14 +74,14 @@ export default {
     }
   },
   methods: {
-    handleClick(e) {
+    async handleClick(e) {
       const loadingBar = this.$refs.bar
       loadingBar.start()
 
       if (this.isLogin) {
         this.login()
       } else {
-        this.register()
+        await this.register()
       }
 
       this.timer = setTimeout(() => {
@@ -100,14 +100,14 @@ export default {
       }
       this.updateErrors()
     },
-    register() {
+    async register() {
       if (
         this.email &&
         this.validateEmail(this.email) &&
         this.password &&
         this.validatePassword(this.password)
       ) {
-        this.$store.dispatch('global/register', {
+        await this.$store.dispatch('global/register', {
           email: this.email,
           password: this.password
         })
@@ -164,7 +164,7 @@ export default {
 </script>
 <style lang="scss">
 .form-container {
-  max-width: 960px;
+  max-width: 600px;
   margin: auto;
 }
 

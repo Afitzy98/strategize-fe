@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import { PAYMENT_STATUS } from '../constants'
+
 import createRoutes from './routes'
 
 Vue.use(VueRouter)
@@ -20,7 +22,19 @@ export default function({ store }) {
       if (!store.state.global.user) {
         next('login')
       } else {
-        next()
+        switch (store.state.global.user.payment_status) {
+          case PAYMENT_STATUS.PENDING:
+            store.dispatch('global/createCheckoutSession')
+            break
+
+          case PAYMENT_STATUS.FAILED:
+            // TODO: handle customer portal
+            break
+
+          default:
+            next()
+            break
+        }
       }
     })
   }

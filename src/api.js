@@ -28,6 +28,9 @@ const api = {
   },
   async register(data) {
     return http.post('/users', data)
+  },
+  async createCheckoutSession(token) {
+    return http.get('/payments/create-checkout-session', authHeaders(token))
   }
 }
 

@@ -5,3 +5,9 @@ export const COIN_IDS = [
   'ltc-litecoin',
   'bch-bitcoin-cash'
 ]
+
+export const PAYMENT_STATUS = {
+  PAID: 'paid',
+  PENDING: 'pending',
+  FAILED: 'failed'
+}
