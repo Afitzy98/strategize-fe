@@ -113,16 +113,7 @@ export default {
       }
     },
     togglePinned() {
-      let newPinnedCoinIds = [...this.pinnedCoinIds]
-
-      if (this.isPinned) {
-        newPinnedCoinIds = newPinnedCoinIds.filter(id => {
-          return id !== this.coinId
-        })
-      } else {
-        newPinnedCoinIds.push(this.coinId)
-      }
-      this.$store.commit('global/updatePinnedCoinIds', newPinnedCoinIds)
+      this.$store.dispatch('global/updateFavourites', this.coinId)
     }
   },
   mounted() {
@@ -137,11 +128,11 @@ export default {
     this.timer = setInterval(this.loadData, 120000)
   },
   computed: {
-    pinnedCoinIds() {
-      return this.$store.state.global.pinnedCoinIds
+    favouriteCoinIds() {
+      return JSON.parse(this.$store.state.global.user.favourites)
     },
     isPinned() {
-      return this.pinnedCoinIds.includes(this.coinId)
+      return this.favouriteCoinIds.includes(this.coinId)
     },
     classes() {
       return this.isPinned ? ' pinned' : ''

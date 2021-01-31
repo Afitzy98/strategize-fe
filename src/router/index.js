@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import api from '../api'
-import { PAYMENT_STATUS } from '../constants'
+import { SUBSCRIPTION_STATUS } from '../constants'
 
 import createRoutes from './routes'
 
@@ -23,19 +23,21 @@ export default function({ store }) {
       if (!store.state.global.user) {
         next('login')
       } else {
-        console.log(store.state.global.user.payment_status)
-        switch (store.state.global.user.payment_status) {
-          case PAYMENT_STATUS.PENDING:
+        switch (store.state.global.user.subscription_status) {
+          case SUBSCRIPTION_STATUS.UNPAID:
+          case SUBSCRIPTION_STATUS.INCOMPLETE_EXPIRED:
             store.dispatch('global/createCheckoutSession')
             break
 
-          case PAYMENT_STATUS.CANCELLED:
-          case PAYMENT_STATUS.FAILED:
-            console.log('ENTERED')
+          case SUBSCRIPTION_STATUS.CANCELED:
+          case SUBSCRIPTION_STATUS.INCOMPLETE:
             api
-              .createCustomerPortal()
+              .createCustomerPortal(store.state.global.token)
               .then(({ data: { url } }) => (document.location.href = url))
-              .catch(e => next('login')) // TODO:: update login errors
+              .catch(e => {
+                console.log(e)
+                next('login')
+              }) // TODO:: update login errors
             break
 
           default:

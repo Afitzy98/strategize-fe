@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     coins() {
-      return { ...this.$store.state.global.pinnedCoinIds }
+      return { ...JSON.parse(this.$store.state.global.user.favourites) }
     }
   }
 }

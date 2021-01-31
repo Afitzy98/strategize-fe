@@ -25,7 +25,7 @@ export default {
   name: 'EssentialLink',
   data() {
     return {
-      target: this.isLocal ? null : '__blank',
+      // target: this.isLocal ? null : '__blank',
       prefix: this.isLocal ? '/#' : ''
     }
   },

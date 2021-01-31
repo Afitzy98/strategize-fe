@@ -7,8 +7,8 @@ const stripePromise = loadStripe(process.env.STRIPE_KEY)
 export async function login({ commit }, { email, password }) {
   try {
     const { data } = await api.logInGetToken(email, password)
-    commit('updateToken', data.access_token)
-    commit('updateLoginErrors', [], false)
+    await commit('updateToken', data.access_token)
+    await commit('updateLoginErrors', [], false)
 
     this.$router.push('/')
   } catch (e) {
@@ -55,5 +55,29 @@ export async function setUser({ commit, state }) {
     commit('updateUser', data)
   } catch (e) {
     commit('updateUser', null)
+  }
+}
+
+export async function updateFavourites({ commit, state }, coinId) {
+  try {
+    // make copy of state
+    const user = JSON.parse(JSON.stringify(state.user))
+    const currentFavourites = JSON.parse(user.favourites)
+
+    if (currentFavourites.find(id => id === coinId)) {
+      user.favourites = JSON.stringify(
+        currentFavourites.filter(id => id !== coinId)
+      )
+    } else {
+      const updated = [...currentFavourites, coinId]
+      user.favourites = JSON.stringify(updated)
+    }
+
+    // update state with new favourites
+    const { data } = await api.updateUser(state.token, user)
+    commit('updateUser', data)
+  } catch (e) {
+    // TODO: Handle error with toast or other
+    console.log(e)
   }
 }

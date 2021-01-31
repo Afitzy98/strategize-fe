@@ -1,15 +1,9 @@
-export const COIN_IDS = [
-  'btc-bitcoin',
-  'eth-ethereum',
-  'xrp-ripple',
-  'ltc-litecoin',
-  'bch-bitcoin-cash'
-]
-
-export const PAYMENT_STATUS = {
-  PAID: 'paid',
-  PENDING: 'pending',
-  FAILED: 'failed',
-  RENEWING: 'renewing',
-  CANCELLED: 'cancelled'
+export const SUBSCRIPTION_STATUS = {
+  ACTIVE: 'active',
+  CANCELED: 'canceled',
+  INCOMPLETE: 'incomplete',
+  INCOMPLETE_EXPIRED: 'incomplete_expired',
+  PAST_DUE: 'past_due',
+  TRIALING: 'trialing',
+  UNPAID: 'unpaid'
 }
