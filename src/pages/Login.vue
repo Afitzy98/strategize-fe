@@ -46,6 +46,7 @@
         />
 
         <q-btn
+          v-on:keyup.enter="handleClick"
           @click="handleClick"
           color="accent"
           :label="buttonText"
