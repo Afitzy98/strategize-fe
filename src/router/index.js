@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+import api from '../api'
 import { PAYMENT_STATUS } from '../constants'
 
 import createRoutes from './routes'
@@ -22,13 +23,19 @@ export default function({ store }) {
       if (!store.state.global.user) {
         next('login')
       } else {
+        console.log(store.state.global.user.payment_status)
         switch (store.state.global.user.payment_status) {
           case PAYMENT_STATUS.PENDING:
             store.dispatch('global/createCheckoutSession')
             break
 
+          case PAYMENT_STATUS.CANCELLED:
           case PAYMENT_STATUS.FAILED:
-            // TODO: handle customer portal
+            console.log('ENTERED')
+            api
+              .createCustomerPortal()
+              .then(({ data: { url } }) => (document.location.href = url))
+              .catch(e => next('login')) // TODO:: update login errors
             break
 
           default:

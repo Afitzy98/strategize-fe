@@ -31,9 +31,7 @@
 
     <q-drawer v-model="leftDrawerOpen" bordered dark>
       <q-list>
-        <q-item-label header class="text-white">
-          Essential Links
-        </q-item-label>
+        <q-item-label header />
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -51,6 +49,7 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
+import api from 'src/api'
 
 const linksData = [
   {
@@ -82,6 +81,7 @@ export default {
   data() {
     return {
       leftDrawerOpen: false,
+      stripeAccountLink: '',
       essentialLinks: linksData
     }
   },
@@ -103,6 +103,23 @@ export default {
     },
     buttonText() {
       return this.isLoggedIn ? 'Sign out' : 'sign in'
+    }
+  },
+  async mounted() {
+    if (this.$store.state.global.user) {
+      const {
+        data: { url }
+      } = await api.createCustomerPortal(this.$store.state.global.token)
+      console.log(url)
+      this.essentialLinks = [
+        ...this.essentialLinks,
+        {
+          title: 'Account',
+          caption: 'Manage your account',
+          icon: 'account_circle',
+          link: url
+        }
+      ]
     }
   }
 }

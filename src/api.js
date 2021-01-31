@@ -31,6 +31,9 @@ const api = {
   },
   async createCheckoutSession(token) {
     return http.get('/payments/create-checkout-session', authHeaders(token))
+  },
+  async createCustomerPortal(token) {
+    return http.get('/payments/customer-portal', authHeaders(token))
   }
 }
 

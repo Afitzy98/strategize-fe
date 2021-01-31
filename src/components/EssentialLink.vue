@@ -12,7 +12,7 @@
     </q-item-section>
 
     <q-item-section>
-      <q-item-label class="text-gray3">{{ title }}</q-item-label>
+      <q-item-label class="text-accent">{{ title }}</q-item-label>
       <q-item-label caption class="text-gray3">
         {{ caption }}
       </q-item-label>

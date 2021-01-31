@@ -9,5 +9,7 @@ export const COIN_IDS = [
 export const PAYMENT_STATUS = {
   PAID: 'paid',
   PENDING: 'pending',
-  FAILED: 'failed'
+  FAILED: 'failed',
+  RENEWING: 'renewing',
+  CANCELLED: 'cancelled'
 }
