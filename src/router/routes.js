@@ -32,6 +32,11 @@ const createRoutes = requiresAuth => {
           path: '/login',
           name: 'Login',
           component: () => import('pages/Login.vue')
+        },
+        {
+          path: '/terms',
+          name: 'Terms & Conditions',
+          component: () => import('pages/Terms.vue')
         }
       ]
     },

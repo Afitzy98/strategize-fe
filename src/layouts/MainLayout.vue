@@ -72,6 +72,12 @@ const linksData = [
     icon: 'help',
     link: '/about',
     isLocal: true
+  },
+  {
+    title: 'Terms & Conditions',
+    icon: 'text_snippet',
+    link: '/terms',
+    isLocal: true
   }
 ]
 
