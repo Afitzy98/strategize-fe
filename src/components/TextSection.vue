@@ -27,6 +27,6 @@ export default {
 
 <style lang="scss">
 .title {
-  font-weight: 600;
+  font-weight: 500;
 }
 </style>
