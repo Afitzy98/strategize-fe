@@ -42,7 +42,9 @@ module.exports = function(/* ctx */) {
     build: {
       env: {
         QUASAR_API_URL: 'https://strategise-api.herokuapp.com/',
-        STRIPE_KEY: 'pk_test_EtobM8NgmYYu4p1HMjYhSEC9000nmKO69Y'
+        STRIPE_KEY: 'pk_test_EtobM8NgmYYu4p1HMjYhSEC9000nmKO69Y',
+        PUSH_PUBLIC_KEY:
+          'BBXWAY9dyVDVorOwRgFHsv8i0qec6E4_J7AwjamTmXtWBQ7hbDyQakjRkfcLYntEXASZBWEfVuALzO46bhSYs7w'
       },
       vueRouterMode: 'hash', // available values: 'hash', 'history'
 
