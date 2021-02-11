@@ -41,6 +41,7 @@
       </q-list>
     </q-drawer>
 
+    <notification-dialog :open="displayNotificationDialog" />>
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -48,8 +49,11 @@
 </template>
 
 <script>
+import sw from '../../src-pwa/register-service-worker'
 import EssentialLink from 'components/EssentialLink.vue'
+import NotificationDialog from 'components/NotificationDialog.vue'
 import api from 'src/api'
+import { SUBSCRIPTION_STATUS } from 'src/constants'
 
 const linksData = [
   {
@@ -83,7 +87,7 @@ const linksData = [
 
 export default {
   name: 'MainLayout',
-  components: { EssentialLink },
+  components: { EssentialLink, NotificationDialog },
   data() {
     return {
       leftDrawerOpen: false,
@@ -109,6 +113,15 @@ export default {
     },
     buttonText() {
       return this.isLoggedIn ? 'Sign out' : 'sign in'
+    },
+    displayNotificationDialog() {
+      const hasSeenNotificationDialog = this.$store.state.global
+        .hasSeenNotificationDialog
+      const isPayingUser =
+        this.$store.state.global.user?.subscription_status ===
+        SUBSCRIPTION_STATUS.ACTIVE
+
+      return !hasSeenNotificationDialog && isPayingUser
     }
   },
   async mounted() {
@@ -126,6 +139,14 @@ export default {
           link: url
         }
       ]
+    }
+    if (sw.registration) {
+      this.$store.commit('global/updateSwRegistration', sw.registration)
+      sw.registration.pushManager.getSubscription().then(subscription => {
+        const isSubscribed = !(subscription === null)
+
+        this.$store.commit('global/updateIsSubscribed', isSubscribed)
+      })
     }
   }
 }

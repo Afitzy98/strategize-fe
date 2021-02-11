@@ -81,3 +81,19 @@ export async function updateFavourites({ commit, state }, coinId) {
     console.log(e)
   }
 }
+
+export async function updatePushSubscription({ commit, state }, subscription) {
+  try {
+    // make copy of user from state
+    const user = JSON.parse(JSON.stringify(state.user))
+
+    user.push_subscription = JSON.stringify(subscription)
+
+    // update user & state
+    const { data } = await api.updateUser(state.token, user)
+    commit('updateUser', data)
+  } catch (e) {
+    // TODO: Handle error with toast or other
+    console.log(e)
+  }
+}

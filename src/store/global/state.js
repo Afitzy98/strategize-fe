@@ -7,9 +7,16 @@ export default function() {
       ? JSON.parse(localStorage.getItem('quasarUser')) || null
       : null // pinned coin ids if exist else default coin ids
 
+  const hasSeenNotificationDialog = typeof window !== 'undefined'
+    ? JSON.parse(localStorage.getItem('hasSeenNotificationDialog')) || false
+    : false // pinned coin ids if exist else default coin ids
+
   return {
     token,
     user,
-    loginErrors: []
+    loginErrors: [],
+    isSubscribed: false,
+    swRegistration: null,
+    hasSeenNotificationDialog
   }
 }

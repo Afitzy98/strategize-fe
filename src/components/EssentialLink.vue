@@ -1,12 +1,5 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    :target="target"
-    :href="prefix + link"
-    dark
-    @click="onClick"
-  >
+  <q-item clickable tag="a" :href="prefix + link" dark @click="onClick">
     <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" class="text-accent" />
     </q-item-section>
